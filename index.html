@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+	<script type="text/javascript" src="./gtm.js"></script>
 </head>
 <body>
-	<script type='text/javascript' src='./gtm.js'></script>
+	
     <script type='text/javascript'>
 	function initEmbeddedMessaging() {
 		try {
@@ -24,8 +25,20 @@
 			console.error('Error loading Embedded Messaging: ', err);
 		}
 	};
+		
+	function startChat() {
+        console.log('called');            
+		window.dataLayer = window.dataLayer || [];
+		try {
+			dataLayer.push({'event': 'beginchat_submit', 'component': leadComponent});
+			console.log('datalayer');
+		} catch(err) {
+			console.log('error occured', err);
+		}
+         console.log('done');           
 </script>
 <script type='text/javascript' src='https://usaf--chatcon.sandbox.experience.crmforce.mil/ESWTFEnhancedChat1763148693447/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 <h1>Total Force Chat Page</h1>
+	<button onclick="startChat();">Fire Event</button>
 </body>
 </html>
