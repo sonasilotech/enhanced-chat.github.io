@@ -51,7 +51,7 @@ function getGA4Data() {
 	  // We need to find the cookie that starts with "_ga_" but isn't just "_ga"
 	  let sessionId = null;
 	  const allCookies = document.cookie.split('; ');
-	  const sessionCookie = allCookies.find(row => row.startsWith('_ga_'));
+	  const sessionCookie = allCookies.find(row => row.startsWith('_ga_EYFLELGKGE'));
 	  
 	  if (sessionCookie) {
 	    const cookieValue = sessionCookie.split('=')[1];
