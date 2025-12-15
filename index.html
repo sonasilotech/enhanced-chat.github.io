@@ -68,11 +68,16 @@ function getGA4Data() {
 	    session_id: sessionId
 	  };
 }
-window.addEventListener('chatIFrameReady', (event) => {
-	const gaData = getGA4Data();
-	console.log("Client ID:", gaData.client_id);
-	console.log("Session ID:", gaData.session_id);
-	document.querySelector('#embeddedMessagingFrame').contentWindow.postMessage({'event':'GA4Data', 'client_id': gaData.client_id, 'session_id': gaData.session_id}, '*')
+window.addEventListener('message', (event) => {
+	console.log('called', event.data);
+	if(event.data.event === 'chatIFrameReady') {
+		const gaData = getGA4Data();
+		console.log("Client ID:", gaData.client_id);
+		console.log("Session ID:", gaData.session_id);
+		document.querySelector('#embeddedMessagingFrame').contentWindow.postMessage({'event':'GA4Data', 'client_id': gaData.client_id, 'session_id': gaData.session_id}, '*');
+		console.log('success');
+	}
+	
 });
 	
 
